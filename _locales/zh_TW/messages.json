@@ -9,7 +9,13 @@
         "message": "這個插件主要用來學習各種語言，可以保存單詞，語句，文章到指定數據庫，用來練習讀寫；可以斷點學習各種視頻網站的視頻，用來練習聽說讀寫"
     },
     "fun_video_label":{
-        "message":"影片斷點"
+        "message":"開啟影片斷點"
+    },
+    "no_video_ele":{
+        "message":"這個頁面沒有播放器"
+    },
+    "subtitle_blocker":{
+        "message":"字幕遮擋器"
     },
     "video_shotcut_key":{
         "message":"快捷鍵: z 斷點開始，x 重複播放z點到這個點的視頻，c 停止循環繼續視頻播放"

@@ -1,12 +1,14 @@
+let isComposing = false;
+
 function handleRecord(originalInput,translationInput,recorderBtn){
     originalInput.addEventListener('keyup',(e)=>{
-        if(e.keyCode === 13){
+        if(e.keyCode === 13 && !isComposing){
             originalInput.blur()
             translationInput.focus()
         }
     })
     translationInput.addEventListener('keyup',async (e)=>{
-        if(e.keyCode === 13){
+        if(e.keyCode === 13 && !isComposing){
             let data = {
                 original:originalInput.value,
                 translation:translationInput.value || ''
@@ -137,6 +139,20 @@ function recorderStart() {
             let isDragging = false;
             let offsetX = 0;
             let offsetY = 0;
+            // 監聽鍵盤是否完成輸入
+            // originalInput.addEventListener('compositionstart', () => {
+            //     isComposing = true;
+            // });
+            // originalInput.addEventListener('compositionend', () => {
+            //     isComposing = false;
+            // });
+
+            // translationInput.addEventListener('compositionstart', () => {
+            //     isComposing = true;
+            // });
+            // translationInput.addEventListener('compositionend', () => {
+            //     isComposing = false;
+            // });
 
             recorderHandle.addEventListener("mousedown", (e) => {
                 if (e.target !== recorderHandle) return; // 只允許拖動區域在

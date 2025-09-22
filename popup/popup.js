@@ -52,7 +52,24 @@ recorderSwitch.addEventListener("change", async () => {
         enabled: isEnabled
     });
 });
+//開啟網頁嵌套
+const nestSwitch = document.getElementById("nestSwitch");
 
+chrome.storage.sync.get("nestEnabled", (data) => {
+    nestSwitch.checked = data.nestEnabled || false;
+});
+
+nestSwitch.addEventListener("change", async () => {
+    const isEnabled = nestSwitch.checked;
+
+    chrome.storage.sync.set({ nestEnabled: isEnabled });
+
+    const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+    chrome.tabs.sendMessage(tab.id, {
+        type:'nest',
+        enabled: isEnabled
+    });
+});
 //開啟跳過片頭片尾
 const skipOESwitch = document.getElementById("skipOESwitch");
 const skipOEItemsBox = document.getElementById("skipOEItemsBox");
