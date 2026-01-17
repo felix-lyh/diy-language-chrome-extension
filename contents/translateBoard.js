@@ -66,7 +66,7 @@ chrome.runtime.onMessage.addListener((message) => {
         }, 0);
         // 收藏按鈕點擊邏輯
         document.getElementById("save-word").addEventListener("click", () => {
-            const url = `https://diy-learn-language-next-heaven-hub1s-projects.vercel.app/api/words`;
+            const url = `http://localhost:3000/api/words`;
             let fetchOptions = {
                 method:'POST',
                 headers: {

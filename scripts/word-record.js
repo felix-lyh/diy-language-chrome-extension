@@ -1,6 +1,6 @@
 let isComposing = false;
 
-function handleRecord(originalInput,translationInput,recorderBtn){
+function handleRecord(originalInput,translationInput,examplesInput,recorderBtn){
     originalInput.addEventListener('keyup',(e)=>{
         if(e.keyCode === 13 && !isComposing){
             originalInput.blur()
@@ -21,18 +21,21 @@ function handleRecord(originalInput,translationInput,recorderBtn){
     recorderBtn.addEventListener('click',async ()=>{
         let data = {
             original:originalInput.value,
-            translation:translationInput.value || ''
+            translation:translationInput.value || '',
+            examples:examplesInput.value || ''
         }
         sendDataToApi(data)
         originalInput.value = ''
         translationInput.value = ''
+        examplesInput.value = ''
     })
 }
 function sendDataToApi({original,translation}){
-    const url = `https://diy-learn-language-next-heaven-hub1s-projects.vercel.app/api/words`;
+    const url = `http://localhost:3000/api/words`;
     let inputData = {
         original,
-        translation
+        translation,
+        examples
     }
     let fetchOptions = {
         method:'POST',
@@ -53,11 +56,14 @@ function recorderStart() {
             const recorderHandle = document.createElement("div");
             const originalInput = document.createElement("input");
             const translationInput = document.createElement("input");
+            const examplesInput = document.createElement("input");
             const recorderBtn = document.createElement("div");
             originalInput.autocomplete = 'off';
             translationInput.autocomplete = 'off';
+            examplesInput.autocomplete = 'off';
             originalInput.placeholder = chrome.i18n.getMessage('record_original_input_ph');
             translationInput.placeholder = chrome.i18n.getMessage('record_translation_input_ph');
+            examplesInput.placeholder = chrome.i18n.getMessage('record_examples_input_ph');
             recorderBox.id = id;
             recorderBox.style.cssText = `
                 position: fixed;
@@ -97,6 +103,8 @@ function recorderStart() {
             originalInput.style.cssText = inputStyle;
             translationInput.id = 'translation-input';
             translationInput.style.cssText = inputStyle;
+            examplesInput.id = 'translation-input';
+            examplesInput.style.cssText = inputStyle;
             recorderBtn.id = 'recorder-btn';
             recorderBtn.style.cssText = `
                 align-self: flex-end;
@@ -129,12 +137,10 @@ function recorderStart() {
             recorderBox.appendChild(recorderHandle)
             recorderBox.appendChild(originalInput)
             recorderBox.appendChild(translationInput)
+            recorderBox.appendChild(examplesInput)
             recorderBox.appendChild(recorderBtn)
             document.body.appendChild(recorderBox);
-            handleRecord(originalInput,translationInput,recorderBtn)
-            // recorderBtn.addEventListener('click',()=>{
-            //     sendDataToApi({original:originalInput.value,translation:translationInput.value || ''})
-            // })
+            handleRecord(originalInput,translationInput,examplesInput,recorderBtn)
             // 拖動功能
             let isDragging = false;
             let offsetX = 0;

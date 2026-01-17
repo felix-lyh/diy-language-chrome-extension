@@ -8,7 +8,7 @@ chrome.runtime.onInstalled.addListener(() => {
 
 chrome.contextMenus.onClicked.addListener((info, tab) => {
     if (info.menuItemId === "custom-option-collect") {
-        // 對當前頁面注入一段代碼
+        // inject a piece of code into the current page
         chrome.tabs.sendMessage(tab.id, {
             action: "translate-collect",
             text: info.selectionText

@@ -43,5 +43,8 @@
     },
     "record_translation_input_ph":{
         "message":"詞句翻譯 | 這個可以為空"
+    },
+    "record_examples_input_ph":{
+        "message":"例句多个可以用;隔开"
     }
 }
