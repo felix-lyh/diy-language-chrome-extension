@@ -1,8 +1,12 @@
-{
+// manifest.config.ts
+import { defineManifest } from '@crxjs/vite-plugin'
+import packageJson from '../package.json'
+
+export default defineManifest({
     "name": "__MSG_application_title__",
     "description": "__MSG_application_description__",
     "manifest_version": 3,
-    "version": "1.0",
+    "version": packageJson.version,
     "permissions": [
         "storage",
         "notifications",
@@ -12,19 +16,19 @@
     ],
     "default_locale": "zh_TW",
     "icons": {
-        "16": "images/logo.png",
-        "32": "images/logo.png",
-        "48": "images/logo.png",
-        "128": "images/logo.png"
+        "16": "logo.png",
+        "32": "logo.png",
+        "48": "logo.png",
+        "128": "logo.png"
     },
     "action": {
-        "default_icon": "images/logo.png",
-        "default_popup": "/popup/popup.html"
+        "default_icon": "logo.png",
+        "default_popup": "index.html"
     },
     "content_scripts": [
         {
             "js": [
-                "scripts/content-youdao.js"
+                "src/content_scripts/content-youdao.js"
             ],
             "matches": [
                 "https://fanyi.youdao.com/*"
@@ -33,28 +37,26 @@
         },
         {
             "js": [
-                "scripts/content-video-key.js",
-                "scripts/content-blocker.js",
-                "scripts/word-record.js",
-                "scripts/skip-opening-ending.js"
+                "src/content_scripts/content-video-key.js",
+                "src/content_scripts/content-blocker.ts",
+                "src/content_scripts/collect-online-dictionary.ts",
+                "src/content_scripts/skip-opening-ending.js"
             ],
             "matches": [
                 "<all_urls>"
-            ],
-            "type": "module"
+            ]
         },
         {
             "js": [
-                "contents/translateBoard.js"
+                "src/content_scripts/translateBoard.js"
             ],
             "matches": [
                 "<all_urls>"
-            ],
-            "type": "module"
+            ]
         }
     ],
     "background": {
-        "service_worker": "background/index.js",
+        "service_worker": "src/background/index.js",
         "type": "module"
     },
     "host_permissions": [
@@ -68,4 +70,5 @@
             }
         }
     }
-}
+
+})
