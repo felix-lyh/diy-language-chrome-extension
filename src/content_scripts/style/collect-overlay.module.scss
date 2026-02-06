@@ -1,6 +1,62 @@
+@use '../../theme/variables.scss';
 @use './glassOverlay.module.scss';
-@import 'element-plus/dist/index.css';
-.glass{
+
+.glass {
     width: 400px;
     height: 250px;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+}
+
+#diy-collect-words-form {
+    margin-top: 25px;
+    color: #fff;
+    padding: 10px 20px;
+    input,button,svg{
+        outline: none;
+        border:none;
+    }
+    input {
+        border: 1px solid rgb(233, 233, 235);
+        padding: 3px 7px;
+        font-size: 16px;
+        border-radius: 4px;
+        background-color: rgb(233, 233, 235);
+
+        &:focus {
+            border: 1px solid $primary-color;
+        }
+    }
+
+    .diy-form-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+
+        .diy-form-item-label {
+            font-size: 16px;
+        }
+
+        .diy-input {
+            width: 80%;
+        }
+    }
+    .submit-successful{
+        color: rgb(149, 212, 117);
+    }
+    .submit-failure{
+        color: rgb(248, 152, 152);
+    }
+    .diy-confirm-btn {
+        padding: 5px 8px;
+        cursor: pointer;
+        background-color: #409eff;
+        color: #fff;
+        border-radius: 4px;
+
+        &:active {
+            background-color: rgba(#409eff, 0.6);
+        }
+    }
 }

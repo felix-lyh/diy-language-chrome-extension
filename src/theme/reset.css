@@ -140,3 +140,7 @@ body {
     min-height: 250px;
     font-size: 14px;
 }
+input,button,svg{
+    outline: none;
+    border:none;
+}

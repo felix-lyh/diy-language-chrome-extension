@@ -18,7 +18,15 @@
             "@/*": [
                 "./src/*"
             ]
-        }
+        },
+        "resolveJsonModule": true,
+        "esModuleInterop": true,
+        "allowImportingTsExtensions":true,
+        "noEmit":true,
+        "target": "ESNext",
+        "module": "ESNext",
+        "moduleResolution": "bundler", // 或者 "node"
+        "lib": ["ESNext", "DOM"],
     },
     "include": [
         "src/**/*.d.ts",

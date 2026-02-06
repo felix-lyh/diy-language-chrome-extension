@@ -5,14 +5,14 @@
         "lib": [
             "ES2023"
         ],
-        "module": "ESNext",
+        "module": "nodenext",
         "types": [
             "node",
             "chrome"
         ],
         "skipLibCheck": true,
         /* Bundler mode */
-        "moduleResolution": "bundler",
+        "moduleResolution": "nodenext",
         "allowImportingTsExtensions": true,
         "verbatimModuleSyntax": true,
         "moduleDetection": "force",

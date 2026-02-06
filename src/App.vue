@@ -4,10 +4,13 @@ import SubtitleMaskerSwitch from './components/subtitle-masker-switch.vue'
 </script>
 
 <template>
-    <div>
-        <div>
-            <SubtitleMaskerSwitch/>
-            <CollectWordsSwitch/>
-        </div>
+    <div class="app-home">
+        <SubtitleMaskerSwitch/>
+        <CollectWordsSwitch/>
     </div>
 </template>
+<style lang="scss">
+.app-home{
+    padding: 10px 15px;
+}
+</style>

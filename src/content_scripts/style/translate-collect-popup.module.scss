@@ -1,0 +1,88 @@
+@use '../../theme/variables.scss';
+@use '../../theme/reset.css';
+
+#translate-collect-popup {
+    position: fixed;
+    top: 20px;
+    right: 40px;
+    z-index: 99999;
+    background-color: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    min-width: 300px;
+    height: fit-content;
+    max-width: 500px;
+    max-height: 500px;
+    font-size: 16px;
+    padding-top: 40px;
+    overflow: auto;
+    .translate-type-tab{
+        display: flex;
+        // width: 250px;
+        position: absolute;
+        top: 15px;
+        left: 10px;
+        border-bottom: 1px solid rgba($color: $primary-color, $alpha: 0.5);
+        .tab-item{
+            width:120px;
+            padding: 8px 10px;
+            text-align: center;
+            cursor: pointer;
+            &.active{
+                border-bottom: 2px solid $primary-color;
+            }
+        }
+        
+    }
+    .save-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        border: 1px solid rgba(0, 0, 0, .2);
+        display: inline-block;
+        width: 36px;
+        height: 36px;
+        padding: 5px;
+        border-radius: 20px;
+        color: rgba(0, 0, 0, .5);
+        cursor: pointer;
+        &:hover{
+            background-color: rgba($color: $primary-color, $alpha: 0.3);
+            color: $primary-color;
+            border: 1px solid rgba($color: $primary-color, $alpha: 0.3);
+        }
+    }
+
+    .selected-text {
+        margin: 10px 0;
+        padding: 10px 15px;
+    }
+
+    .translated-text {
+        border-top: 1px solid rgba(0, 0, 0, .12);
+        padding: 10px 15px;
+        .loading-box{
+            display: flex;
+            justify-content: center;
+        }
+        .definitions{
+            .definition-item{
+                margin-top: 10px;
+            }
+        }
+    }
+
+    @keyframes spin {
+        from {
+            transform: rotate(0deg);
+        }
+
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    .loader {
+        animation: spin 1s linear infinite;
+    }
+}

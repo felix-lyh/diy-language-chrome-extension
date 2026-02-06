@@ -1,8 +1,20 @@
 {
     "common.ph":"请输入内容",
+    "common.confirm":"确认",
     "subtitle_masker":"屏幕遮挡器",
     "collect_words":"词汇收集",
-    "collect_words.original":"词汇",
-    "collect_words.translation":"解释｜翻译",
-    "collect_words.examples":"例句"
+    "collect_words.vocabulary":"词汇",
+    "collect_words.translation":"翻译",
+    "collect_words.translation_ph":"多条翻译用 ; 隔开",
+    "collect_words.examples":"例句",
+    "collect_words.examples_ph":"多条例句用 ; 隔开",
+
+    "add_vocabulary.successful":"添加词汇成功，请前往网站复习！",
+    "add_vocabulary.failure":"添加失败，请刷新后重试",
+    "translate_error":"翻译出错，请稍后重试",
+    "translate_error.english_just_word":"英英释义仅支持单个单词",
+    "translate_error.no_content":"没有选中内容",
+
+    "collect-words.tips":"可以打开一个输入框，手动输入你想要的词汇，保存后会进入网页词汇表",
+    "subtitle-masker.tips":"可以打开一个遮挡器，自由调节大小和位置，遮住视频中英文字幕"
 }

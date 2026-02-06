@@ -1,7 +1,8 @@
 
-import { createApp } from 'vue'
+// import { createApp } from 'vue'
 import GlassOverlay from './components/glassOverlay.vue'
-import styleCss from './style/glassOverlay.module.scss?inline'
+import styleCss from './style/glassOverlay.module.scss?inline';
+import { createShadowDoc } from './common/index'
 const ID = 'diy-glass-overlay'
 
 // when video become fullscreen 
@@ -22,17 +23,7 @@ async function blockerStart() {
     }
     if (glassEnabled) {
         if (document.getElementById(ID)) return
-
-        const host = document.createElement('div')
-        host.id = ID
-        const shadowRoot = host.attachShadow({ mode: 'open' })
-        const style = document.createElement('style')
-        style.textContent = styleCss
-        shadowRoot.appendChild(style)
-        const appRoot = document.createElement('div')
-        shadowRoot.appendChild(appRoot)
-        createApp(GlassOverlay).mount(appRoot)
-        document.body.appendChild(host)
+        createShadowDoc({document:document,eleId:ID,component:GlassOverlay,styleCss})
         document.addEventListener('fullscreenchange', insertOverlayInto);
     } else {
         const container = document.getElementById(ID)
@@ -46,5 +37,5 @@ chrome.runtime.onMessage.addListener(async (message) => {
     if (message.type !== 'glass') return;
     blockerStart()
 });
-// blockerStart()
+blockerStart()
 

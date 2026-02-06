@@ -1,4 +1,3 @@
-// manifest.config.ts
 import { defineManifest } from '@crxjs/vite-plugin'
 import packageJson from '../package.json'
 
@@ -40,23 +39,24 @@ export default defineManifest({
                 "src/content_scripts/content-video-key.js",
                 "src/content_scripts/content-blocker.ts",
                 "src/content_scripts/collect-online-dictionary.ts",
-                "src/content_scripts/skip-opening-ending.js"
+                "src/content_scripts/skip-opening-ending.js",
+                "src/content_scripts/translate-collect.ts"
             ],
             "matches": [
                 "<all_urls>"
             ]
         },
-        {
-            "js": [
-                "src/content_scripts/translateBoard.js"
-            ],
-            "matches": [
-                "<all_urls>"
-            ]
-        }
+        // {
+        //     "js": [
+        //         // "src/content_scripts/translateBoard.js"
+        //     ],
+        //     "matches": [
+        //         "<all_urls>"
+        //     ]
+        // }
     ],
     "background": {
-        "service_worker": "src/background/index.js",
+        "service_worker": "src/background/index.ts",
         "type": "module"
     },
     "host_permissions": [

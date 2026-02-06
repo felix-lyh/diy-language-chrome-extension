@@ -1,5 +1,18 @@
+<template>
+    <div class="collect-words">
+        <span class="label">{{ $t('collect_words') }}</span>
+        <el-switch v-model="isActive" @change="handleChange" />
+        <el-popover :content="$t('collect-words.tips')" placement="top" width="200px">
+            <template #reference>
+                <Info width="30px" height="30px"></Info>
+            </template>
+        </el-popover>
+    </div>
+</template>
+
+
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
+import { onMounted, onUnmounted, ref } from 'vue';
 
 import Info from '@/icon/info.vue'
 const isActive = ref(false)
@@ -12,19 +25,39 @@ const handleChange = async () => {
         enabled: isActive.value
     });
 }
-onMounted(async ()=>{
+function onKeydown(e: KeyboardEvent) {
+    // macOS: Command + S
+    if (e.metaKey && e.key.toLowerCase() === 'z') {
+        e.preventDefault() // prevent browser save dialog
+        isActive.value = !isActive.value
+        handleChange()
+    }
+}
+onMounted(async () => {
     const [tab] = await chrome.tabs.query({ active: true, currentWindow: true }) as any;
     const { collectEnabled, collectCurrentPage } = await chrome.storage.sync.get(['collectEnabled', 'collectCurrentPage']);
-    if(collectEnabled && collectCurrentPage === tab.url){
+    if (collectEnabled && collectCurrentPage === tab.url) {
         isActive.value = true
     }
+    window.addEventListener('keydown', onKeydown)
+})
+onUnmounted(() => {
+    window.removeEventListener('keydown', onKeydown)
 })
 </script>
 
-<template>
-    <div class="flex items-center">
-        <span>{{ $t('collect_words') }}</span>
-        <el-switch v-model="isActive" @change="handleChange"/>
-        <Info width="30px" height="30px"></Info>
-    </div>
-</template>
+<style lang="scss">
+.collect-words {
+    display: flex;
+    align-items: center;
+    width: 80%;
+    justify-content: space-between;
+
+    .label {
+        margin-right: auto;
+    }
+    .svg-icon{
+        cursor: pointer;
+    }
+}
+</style>
