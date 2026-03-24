@@ -5,7 +5,6 @@
                 <label :class="styles['diy-form-item-label']">{{ $t('collect_words.vocabulary') }}</label>
                 <input v-model="formData.vocabulary" :class="styles['diy-input']" :placeholder="$t('common.ph')" name="vocabulary" />
             </div>
-            {{ formData.vocabulary }}
             <div :class="styles['diy-form-item']">
                 <label :class="styles['diy-form-item-label']">{{ $t('collect_words.translation') }}</label>
                 <input v-model="formData.translations" :class="styles['diy-input']" :placeholder="$t('collect_words.translation_ph')" name="translations" />
@@ -32,6 +31,7 @@ import type { VocabularyType } from '@/types/collect-words';
 import { addVocabulary } from '@/api/vocabulary'
 
 const formData = ref<VocabularyType>({
+    bookId:'',
     vocabulary:'',
     translations:'',
     examples:''
@@ -43,9 +43,14 @@ const resetState = ()=>{
         clearTimeout(timer)
     }, 2000);
 }
-const onSubmit = () => {
+const onSubmit = async () => {
+    const result = await chrome.storage.sync.get('bookId'); 
+    formData.value.bookId = result.bookId as string
+    if(!formData.value.bookId) return
+    
     addVocabulary(formData.value).then(()=>{
         formData.value = {
+            bookId:'',
             vocabulary:'',
             translations:'',
             examples:''

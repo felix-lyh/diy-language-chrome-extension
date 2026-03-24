@@ -5,8 +5,17 @@ chrome.runtime.onInstalled.addListener(() => {
         contexts: ["selection"]
     });
 });
-
-chrome.contextMenus.onClicked.addListener((info, tab:any) => {
+chrome.contextMenus.onClicked.addListener((info, tab: any) => {
+    // console.log('info',info)
+    // info = {
+    //     editable:false,
+    //     frameId:0,
+    //     frameUrl:"",
+    //     menuItemId:"custom-option-collect",
+    //     pageUrl:"",
+    //     selectionText:""
+    // }
+    
     if (info.menuItemId === "custom-option-collect") {
         // inject a piece of code into the current page
         chrome.tabs.sendMessage(tab?.id, {

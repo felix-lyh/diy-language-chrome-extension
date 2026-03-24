@@ -3,6 +3,8 @@
     "common.confirm":"确认",
     "subtitle_masker":"屏幕遮挡器",
     "collect_words":"词汇收集",
+    "collect_words_to":"将词汇收集到",
+    "collect_words_to.ph":"选择词汇书",
     "collect_words.vocabulary":"词汇",
     "collect_words.translation":"翻译",
     "collect_words.translation_ph":"多条翻译用 ; 隔开",
@@ -11,10 +13,16 @@
 
     "add_vocabulary.successful":"添加词汇成功，请前往网站复习！",
     "add_vocabulary.failure":"添加失败，请刷新后重试",
+    "add_vocabulary.emptyBook":"没有选择词汇书，请打开插件选择",
     "translate_error":"翻译出错，请稍后重试",
     "translate_error.english_just_word":"英英释义仅支持单个单词",
     "translate_error.no_content":"没有选中内容",
 
     "collect-words.tips":"可以打开一个输入框，手动输入你想要的词汇，保存后会进入网页词汇表",
-    "subtitle-masker.tips":"可以打开一个遮挡器，自由调节大小和位置，遮住视频中英文字幕"
+    "collect-words-to.tips":"必选项，选择一本自建的词汇书，将收集的词汇放到书中",
+    "subtitle-masker.tips":"可以打开一个遮挡器，自由调节大小和位置，遮住视频中英文字幕",
+
+    "review_vocabulary.btn":"高亮复习词汇",
+    "review_vocabulary.tips":"高亮收藏过当前页面的词汇，用来复习词汇"
+
 }

@@ -1,7 +1,7 @@
 <template>
     <div class="collect-words">
         <span class="label">{{ $t('collect_words') }}</span>
-        <el-switch v-model="isActive" @change="handleChange" />
+        <el-switch v-model="isActive" @change="handleChange" style="--el-switch-on-color: #1ABC9C;"/>
         <el-popover :content="$t('collect-words.tips')" placement="top" width="200px">
             <template #reference>
                 <Info width="30px" height="30px"></Info>

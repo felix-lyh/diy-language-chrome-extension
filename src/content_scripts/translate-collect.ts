@@ -6,11 +6,11 @@ import { createShadowDoc } from './common/index'
 import NotificationBox from './components/notification-box.vue'
 import NBstyleCss from './style/notification-box.module.scss?inline'
 import { addVocabulary } from '@/api/vocabulary'
-
+import { getXPath,getElementByXPath} from '@/utils/index'
 const NBID = 'diy-notification-box'
-let timer: ReturnType<typeof setTimeout>|null = null
-const notificationFun = (type:'successful'|'failure') => {
-    if(timer){
+let timer: ReturnType<typeof setTimeout> | null = null
+const notificationFun = (type: 'successful' | 'failure' | 'emptyBook') => {
+    if (timer) {
         clearTimeout(timer)
     }
     createShadowDoc({
@@ -29,41 +29,36 @@ const notificationFun = (type:'successful'|'failure') => {
         timer = null
     }, 1.5 * 1000);
 }
-chrome.runtime.onMessage.addListener((message) => {
+let lastElement: any = null;
+
+document.addEventListener("contextmenu", (event) => {
+    lastElement = event.target || null;
+});
+
+
+chrome.runtime.onMessage.addListener(async (message) => {
     if (message.action === "translate-collect") {
         const selectedText = message.text;
+        let XPath = getXPath(lastElement)
+        getElementByXPath(XPath,selectedText)
+        const result = await chrome.storage.sync.get('bookId');
+        let bookId = result.bookId as string || ""
+        if (!bookId) {
+            notificationFun('emptyBook')
+            return
+        }
         if (!selectedText.trim()) return
         addVocabulary({
+            bookId,
             vocabulary: selectedText,
             translations: '',
             examples: '',
-            vocabularySourceWeb:location.href
+            vocabularySourceWeb: location.href,
+            XPath
         }).then(() => {
             notificationFun('successful')
         }).catch(() => {
             notificationFun('failure')
         })
-        //TODO now,there is not free translate api 
-        // createShadowDoc({ 
-        //     document: document, 
-        //     eleId: ID, 
-        //     component: TranslateCollectPopup, 
-        //     props: {
-        //         selectedText
-        //     },
-        //     styleCss, 
-        //     plugins: [i18n] 
-        // })
-        // function handleOutsideClick(event: any) {
-        //     const popupEl = document.getElementById(ID);
-        //     if (popupEl && !popupEl.contains(event.target)) {
-        //         popupEl.remove();
-        //         document.removeEventListener("click", handleOutsideClick); // 清除事件監聽器
-        //     }
-        // }
-        // // Add the event a little later to avoid triggering the close event immediately upon clicking
-        // setTimeout(() => {
-        //     // document.addEventListener("click", handleOutsideClick);
-        // }, 0);
     }
 });

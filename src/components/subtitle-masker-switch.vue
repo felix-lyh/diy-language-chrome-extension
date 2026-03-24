@@ -1,7 +1,7 @@
 <template>
     <div class="subtitle-masker">
         <span class="label">{{ $t('subtitle_masker') }}</span>
-        <el-switch v-model="isActive" @change="handleChange"/>
+        <el-switch v-model="isActive" @change="handleChange" style="--el-switch-on-color: #1ABC9C;"/>
         <el-popover :content="$t('subtitle-masker.tips')" placement="top" width="200px">
             <template #reference>
                 <Info width="30px" height="30px"></Info>
