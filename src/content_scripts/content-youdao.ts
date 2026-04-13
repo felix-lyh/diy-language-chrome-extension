@@ -1,17 +1,17 @@
 let loadTimes = 0
-function youdaoStart(){
+function youdaoStart() {
     let timeout = setTimeout(() => {
         // match youdao translate box change the css，then it looks purer
-        const translateContainer = document.querySelector(".translate-tab-container .tab-body");
+        const translateContainer = document.querySelector(".translate-tab-container .tab-body") as HTMLElement;
         if (translateContainer) {
             translateContainer.style.position = 'fixed'
-            translateContainer.style.zIndex =  2000
-            translateContainer.style.inset = 0
+            translateContainer.style.zIndex = '2000'
+            translateContainer.style.inset = '0'
             loadTimes = 0
             clearTimeout(timeout)
-        }else{
-            loadTimes ++
-            if(loadTimes>6){
+        } else {
+            loadTimes++
+            if (loadTimes > 6) {
                 loadTimes = 0
                 return
             }
@@ -19,5 +19,6 @@ function youdaoStart(){
         }
     }, 500)
 }
-youdaoStart()
-
+window.addEventListener('load', () => {
+    youdaoStart()
+});

@@ -7,10 +7,10 @@
     "collect_words_to.ph":"选择词汇书",
     "collect_words.vocabulary":"词汇",
     "collect_words.translation":"翻译",
-    "collect_words.translation_ph":"多条翻译用 ; 隔开",
+    "collect_words.translation_ph":"请输入翻译",
     "collect_words.examples":"例句",
-    "collect_words.examples_ph":"多条例句用 ; 隔开",
-
+    "collect_words.examples_ph":"请输入例句",
+    "collect_words.submit":"按Enter键提交",
     "add_vocabulary.successful":"添加词汇成功，请前往网站复习！",
     "add_vocabulary.failure":"添加失败，请刷新后重试",
     "add_vocabulary.emptyBook":"没有选择词汇书，请打开插件选择",

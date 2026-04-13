@@ -27,7 +27,7 @@ export default defineManifest({
     "content_scripts": [
         {
             "js": [
-                "src/content_scripts/content-youdao.js"
+                "src/content_scripts/content-youdao.ts"
             ],
             "matches": [
                 "https://fanyi.youdao.com/*"

@@ -4,5 +4,5 @@ export interface VocabularyType {
     vocabulary:string,
     translations:string,
     examples:string,
-    XPath:string
+    XPath?:string
 }
