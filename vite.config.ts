@@ -7,10 +7,10 @@ import manifest from './src/manifest.config.ts'
 export default defineConfig({
     plugins: [
         vue(),
-        crx({ manifest })
+        crx({ manifest }),
     ],
     build: {
-        cssCodeSplit: false
+        cssCodeSplit: false,
     },
     css: {
         preprocessorOptions: {
@@ -25,6 +25,6 @@ export default defineConfig({
         },
     },
     server: {
-        port: 3001,   
+        port: 3001,
     }
 })

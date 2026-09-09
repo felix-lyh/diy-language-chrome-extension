@@ -34,8 +34,9 @@ const handleChange = (value:string)=>{
 }
 
 const getBookListFun = ()=>{
-    getBookList({page:1,limit:10}).then(async (res)=>{
-        options.value = res.data || []
+    console.log('getBookListFun')
+    getBookList({page:1,limit:10}).then(async (res:any)=>{
+        options.value = res.payload || []
         const result = await chrome.storage.sync.get('bookId');
         bookId.value = result.bookId as string || '';
     })
