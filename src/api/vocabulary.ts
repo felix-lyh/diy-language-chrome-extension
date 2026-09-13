@@ -1,6 +1,6 @@
 import request from './request';
 import type { VocabularyType } from '@/types/collect-words'
-export function addVocabulary({ bookId,vocabulary,translations,examples,vocabularySourceWeb,XPath }: VocabularyType) {
+export function addVocabulary({ bookId,vocabulary,translations,examples,SourceWeb,XPath }: VocabularyType) {
     return request({
         url: '/vocabulary',
         method: 'post',
@@ -9,24 +9,24 @@ export function addVocabulary({ bookId,vocabulary,translations,examples,vocabula
             vocabulary,
             translations,
             examples,
-            vocabularySourceWeb,
+            SourceWeb,
             XPath
         }
     });
 }
 
-export function getVocabularyList({ vocabularySourceWeb }: {vocabularySourceWeb:string}) {
-    console.log('vocabularySourceWeb',vocabularySourceWeb)
+export function getVocabularyList({ SourceWeb }: {SourceWeb:string}) {
+    console.log('SourceWeb',SourceWeb)
     return request({
         url: '/vocabulary',
         method: 'get',
         params: {
-            vocabularySourceWeb,
+            SourceWeb,
             // bookId
         }
     });
 }
-export function updateVocabulary({ bookId,vocabulary,translations,examples,vocabularySourceWeb,XPath }: VocabularyType) {
+export function updateVocabulary({ bookId,vocabulary,translations,examples,SourceWeb }: VocabularyType) {
     return request({
         url: '/vocabulary',
         method: 'put',
@@ -35,7 +35,7 @@ export function updateVocabulary({ bookId,vocabulary,translations,examples,vocab
             vocabulary,
             translations,
             examples,
-            vocabularySourceWeb,
+            SourceWeb,
         }
     });
 }

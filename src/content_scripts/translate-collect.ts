@@ -43,9 +43,9 @@ function startFun() {
         isStart = true;
         setStyle();
         clickOutside();
-        const vocabularySourceWeb = decodeURIComponent(location.href.toString())
-        getVocabularyList({ vocabularySourceWeb }).then((res) => {
-            let list = res.data || []
+        const SourceWeb = decodeURIComponent(location.href.toString())
+        getVocabularyList({ SourceWeb }).then((res:any) => {
+            let list = res.payload || []
             list.forEach((item: { vocabulary: string, XPath: string }) => {
                 getElementByXPath(item.XPath, item.vocabulary, false, item as VocabularyType)
             })
@@ -80,7 +80,7 @@ chrome.runtime.onMessage.addListener(async (message) => {
             vocabulary: selectedText,
             translations: '',
             examples: '',
-            vocabularySourceWeb: decodeURIComponent(location.href.toString()),
+            SourceWeb: decodeURIComponent(location.href.toString()),
             XPath
         }).then(() => {
             notificationFun('successful')

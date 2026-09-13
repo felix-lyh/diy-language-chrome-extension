@@ -1,6 +1,6 @@
 export interface VocabularyType {
     bookId:string;
-    vocabularySourceWeb?: string;
+    SourceWeb?: string;
     vocabulary:string,
     translations:string,
     examples:string,
