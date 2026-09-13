@@ -1,10 +1,9 @@
 import axios from 'axios';
 const baseURL = import.meta.env.VITE_API_BASE_URL;
-
 const instance = axios.create({
     baseURL,
     timeout: 6000,
-    headers: { 'Authorization': 'Bearer pda-fixed-token' }
+    headers: { 'Authorization': 'Bearer fixed-token' }
 });
 // 添加响应拦截器
 instance.interceptors.response.use(function (response:any) {

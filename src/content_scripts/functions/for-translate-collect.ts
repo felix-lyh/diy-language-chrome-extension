@@ -131,7 +131,7 @@ export function setStyle() {
         }
         .diy-popover-box input{
             display: block;
-            width: 100%;
+            width: auto;
             margin-bottom: 5px;
             padding: 4px;
         }
