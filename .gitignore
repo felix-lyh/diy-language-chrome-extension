@@ -25,3 +25,4 @@ dist-ssr
 .vscode
 package-lock.json
 yarn.lock
+dist.zip

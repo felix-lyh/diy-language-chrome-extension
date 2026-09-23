@@ -28,7 +28,7 @@ const notificationFun = (type: 'successful' | 'failure' | 'emptyBook') => {
         const popupEl = document.getElementById(NBID);
         popupEl?.remove();
         timer = null
-    }, 1.5 * 1000);
+    }, 3.5 * 1000);
 }
 let lastElement: any = null;
 let isStart = false

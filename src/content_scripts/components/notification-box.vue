@@ -1,4 +1,5 @@
 <template>
+    <!-- when user press contextMenus, show notification -->
     <div v-show="isShow" :id="styles['notification-box']">
         <h3 v-show="notificationType === 'successful'" :class="styles['successful']">{{ $t('add_vocabulary.successful') }}</h3>
         <h3 v-show="notificationType === 'failure'" :class="styles['failure']">{{ $t('add_vocabulary.failure') }}</h3>
