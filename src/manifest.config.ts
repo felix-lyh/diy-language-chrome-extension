@@ -36,10 +36,10 @@ export default defineManifest({
         },
         {
             "js": [
-                "src/content_scripts/content-video-key.js",
+                // "src/content_scripts/content-video-key.js",
                 "src/content_scripts/content-blocker.ts",
                 "src/content_scripts/collect-online-dictionary.ts",
-                "src/content_scripts/skip-opening-ending.js",
+                // "src/content_scripts/skip-opening-ending.js",
                 "src/content_scripts/translate-collect.ts"
             ],
             "matches": [

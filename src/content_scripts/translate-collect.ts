@@ -66,9 +66,12 @@ chrome.runtime.onMessage.addListener(async (message) => {
     if (message.action === "translate-collect") {
         console.log('message', message)
         const selectedText = message.text;
-        const result = await chrome.storage.sync.get('bookId');
-        let bookId = result.bookId as string || ""
-        if (!bookId) {
+        const result = await chrome.storage.sync.get('bookChapterId') as object & { bookChapterId: string };
+        console.log('result', result)
+        const bookChapterIdData = JSON.parse(result.bookChapterId) as any[]
+        const bookId = bookChapterIdData[0]
+        const chapterId = bookChapterIdData[1]
+        if (!chapterId || !bookId) {
             notificationFun('emptyBook')
             return
         }
@@ -77,6 +80,7 @@ chrome.runtime.onMessage.addListener(async (message) => {
         getElementByXPath(XPath, selectedText, true)
         addVocabulary({
             bookId,
+            chapterId,
             vocabulary: selectedText,
             translations: '',
             examples: '',
