@@ -4,7 +4,7 @@
         <el-switch v-model="isActive" @change="handleChange" style="--el-switch-on-color: #1ABC9C;"/>
         <el-popover :content="$t('subtitle-masker.tips')" placement="top" width="200px">
             <template #reference>
-                <Info width="30px" height="30px"></Info>
+                <Info class="info-icon" width="16px" height="16px"></Info>
             </template>
         </el-popover>
     </div>
@@ -36,13 +36,17 @@ onMounted(async () => {
 .subtitle-masker{
     display: flex;
     align-items: center;
-    width: 80%;
-    justify-content: space-between;
+    width: 100%;
+    gap: 8px;
+    border-radius: 6px;
+    padding: 4px 6px;
+    margin: 0 -6px;
+    transition: background-color 0.2s ease;
+    &:hover{
+        background-color: #f5f7fa;
+    }
     .label{
         margin-right: auto;
-    }
-    .svg-icon{
-        cursor: pointer;
     }
 }
 </style>
