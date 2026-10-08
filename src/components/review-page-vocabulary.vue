@@ -3,7 +3,7 @@
         <el-button type="primary" class="review-btn">{{ $t('review_vocabulary.btn') }}</el-button>
         <el-popover :content="$t('review_vocabulary.tips')" placement="top" width="200px">
             <template #reference>
-                <Info class="info-icon" width="16px" height="16px"></Info>
+                <Info class="info-icon" width="20px" height="20px"></Info>
             </template>
         </el-popover>
     </div>

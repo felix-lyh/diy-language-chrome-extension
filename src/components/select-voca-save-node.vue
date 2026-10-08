@@ -1,14 +1,10 @@
 <template>
     <div class="select-voca-save-node">
         <span class="label">{{ $t('collect_words_to') }}</span>
-        <!-- <el-select @change="handleChange" v-model="bookId" :placeholder="$t('collect_words_to.ph')"
-            style="width: 240px">
-            <el-option v-for="item in options" :key="item.bookId" :label="item.bookName" :value="item.bookId" />
-        </el-select> -->
         <el-cascader v-model="bookChapterId" :props="props" @change="handleChange" />
         <el-popover :content="$t('collect-words-to.tips')" placement="top" width="200px">
             <template #reference>
-                <Info width="30px" height="30px"></Info>
+                <Info width="20px" height="20px"></Info>
             </template>
         </el-popover>
     </div>
@@ -76,22 +72,28 @@ const handleChange = (value: string[]) => {
 onMounted(() => {
     getBookChapterId()
 })
-
+defineExpose({
+    bookChapterId
+})
 </script>
 
 <style lang="scss">
 .select-voca-save-node {
-    margin-top: 5px;
     display: flex;
     align-items: center;
+    width: 100%;
+    gap: 8px;
+    border-radius: 6px;
+    padding: 4px 6px;
+    margin: 0 -6px;
+    transition: background-color 0.2s ease;
 
-    .label {
-        margin-right: 15px;
+    &:hover {
+        background-color: #f5f7fa;
     }
 
-    &::before {
-        content: '*';
-        color: #f00;
+    .el-cascader {
+        margin-right: auto;
     }
 }
 </style>

@@ -4,7 +4,7 @@
         <el-switch v-model="isActive" @change="handleChange" style="--el-switch-on-color: #1ABC9C;"/>
         <el-popover :content="$t('subtitle-masker.tips')" placement="top" width="200px">
             <template #reference>
-                <Info class="info-icon" width="16px" height="16px"></Info>
+                <Info class="info-icon" width="20px" height="20px"></Info>
             </template>
         </el-popover>
     </div>
