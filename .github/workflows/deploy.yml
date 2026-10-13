@@ -18,18 +18,37 @@ jobs:
                   key: ${{ secrets.ECS_SSH_KEY }}
 
                   script: |
-                      # 1. Go to a working directory on ECS for extension repo
-                      cd /opt/chrome-extension
-                      # pull latest extension code
-                      git pull origin release/prod
+                      set -e
 
-                      # 2. Install dependencies and build vue extension
-                      npm install
-                      npm run build
+                        # 1. Go to extension project
+                        cd /opt/chrome-extension
 
-                      # 3. Package dist folder
-                      rm -f dist.zip
-                      zip -r dist.zip dist
+                        echo "Updating extension source..."
+                        git fetch origin release/prod
+                        git reset --hard origin/release/prod
 
-                      # 4. Copy zip file into Next.js shared folder
-                      cp dist.zip /opt/build-own-vocabulary/extension-dist/dist.zip
+                        # 2. Install dependencies
+                        echo "Installing dependencies..."
+                        npm install
+
+                        # 3. Build Vue extension
+                        echo "Building extension..."
+                        rm -rf dist
+                        npm run build
+
+                        # 4. Create zip
+                        echo "Packaging extension..."
+                        rm -f dist.zip
+                        cd dist
+                        zip -r ../dist.zip .
+                        cd ..
+
+                        # 5. Copy artifact
+                        echo "Copying extension package..."
+
+                        mkdir -p /opt/build-own-vocabulary/extension-dist
+
+                        cp dist.zip \
+                            /opt/build-own-vocabulary/extension-dist/dist.zip
+
+                        echo "Deployment finished"
