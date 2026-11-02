@@ -7,3 +7,9 @@
 5.  ECS_USERNAME is whoami input in ECS
 6.  ECS_SSH_KEY is important, I get it in ECS by cat ~/.ssh/id_ed25519 
     and put id_ed25519.pub by cat ~/.ssh/id_ed25519.pub into authorized_keys
+
+7. package version can't be 0.0.1-1, it just can use
+    1
+    1.0
+    1.0.0
+    1.2.3.4

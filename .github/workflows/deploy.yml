@@ -46,9 +46,9 @@ jobs:
                         # 5. Copy artifact
                         echo "Copying extension package..."
 
-                        mkdir -p /opt/build-own-vocabulary/extension-dist
+                        mkdir -p /opt/extension-artifacts
 
                         cp dist.zip \
-                            /opt/build-own-vocabulary/extension-dist/dist.zip
+                            /opt/extension-artifacts/dist.zip
 
                         echo "Deployment finished"
