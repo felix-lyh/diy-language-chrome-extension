@@ -38,7 +38,7 @@ jobs:
 
                         # 4. Create zip
                         echo "Packaging extension..."
-                        rm -f dist.zip
+                        sudo rm -f dist.zip
                         cd dist
                         zip -r ../dist.zip .
                         cd ..
@@ -46,9 +46,9 @@ jobs:
                         # 5. Copy artifact
                         echo "Copying extension package..."
 
-                        mkdir -p /opt/extension-artifacts
+                        sudo mkdir -p /opt/extension-artifacts
 
-                        cp dist.zip \
+                        sudo cp dist.zip \
                             /opt/extension-artifacts/dist.zip
 
                         echo "Deployment finished"
