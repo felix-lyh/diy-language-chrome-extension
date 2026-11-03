@@ -20,35 +20,51 @@ jobs:
                   script: |
                       set -e
 
-                        # 1. Go to extension project
-                        cd /opt/chrome-extension
+                      # 1. Go to extension project
+                      cd /opt/chrome-extension
 
-                        echo "Updating extension source..."
-                        git fetch origin release/prod
-                        git reset --hard origin/release/prod
+                      echo "Updating extension source..."
+                      git fetch origin release/prod
+                      git reset --hard origin/release/prod
 
-                        # 2. Install dependencies
-                        echo "Installing dependencies..."
-                        npm install
+                      # 2. Install dependencies
+                      echo "Installing dependencies..."
+                      npm install
 
-                        # 3. Build Vue extension
-                        echo "Building extension..."
-                        rm -rf dist
-                        npm run build
+                      # 3. Build Vue extension
+                      echo "Building extension..."
+                      rm -rf dist
+                      npm run build
 
-                        # 4. Create zip
-                        echo "Packaging extension..."
-                        sudo rm -f dist.zip
-                        cd dist
-                        zip -r ../dist.zip .
-                        cd ..
+                      # 4. Validate build output
+                      echo "Validating extension..."
+                      test -f dist/manifest.json
 
-                        # 5. Copy artifact
-                        echo "Copying extension package..."
+                      node -e "
+                        const manifest = require('./dist/manifest.json');
+                        if (!manifest.version || !/^\d+(\.\d+){0,3}$/.test(manifest.version)) {
+                          throw new Error('Invalid extension version: ' + manifest.version);
+                        }
+                        console.log('Extension version:', manifest.version);
+                      "
 
-                        sudo mkdir -p /opt/extension-artifacts
+                      # 5. Create zip
+                      echo "Packaging extension..."
+                      rm -f dist.zip
+                      cd dist
+                      zip -r ../dist.zip .
+                      cd ..
 
-                        sudo cp dist.zip \
-                            /opt/extension-artifacts/dist.zip
+                      # 6. Verify zip
+                      echo "Verifying package..."
+                      unzip -t dist.zip
+                      unzip -l dist.zip | grep 'manifest.json'
 
-                        echo "Deployment finished"
+                      # 7. Copy artifact
+                      echo "Copying extension package..."
+                      mkdir -p /opt/extension-artifacts
+                      cp dist.zip /opt/extension-artifacts/dist.zip.tmp
+                      mv /opt/extension-artifacts/dist.zip.tmp \
+                         /opt/extension-artifacts/dist.zip
+
+                      echo "Deployment finished successfully"
